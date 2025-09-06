@@ -2,6 +2,8 @@
 
 A Homebrew tap for Witco CLI tools.
 
+> **Note:** This private repository is mirrored for public access at https://tavern.witco.net/witco/homebrew-witco
+
 ## Installation
 
 ### Geekbot CLI
