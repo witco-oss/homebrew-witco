@@ -80,7 +80,7 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
         [profile geekbot-cli]
         sso_account_id = #{ENV.fetch("AWS_ACCOUNT_ID", "197848513456")}
         sso_session = witco
-        sso_role_name = #{ENV.fetch("AWS_ROLE", "global-access-all-bootstrap")}
+        sso_role_name = #{ENV.fetch("AWS_ROLE", "all-bootstrap")}
         region = us-east-1
         duration_seconds = 43200
         output = json
