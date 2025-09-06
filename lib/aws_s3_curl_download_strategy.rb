@@ -17,7 +17,7 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
   def _fetch(url:, resolved_url:, timeout:)
     # Generate presigned URL just before download
     presigned_url = generate_presigned_url
-    
+
     # Use the presigned URL for the actual download
     super(url: presigned_url, resolved_url: presigned_url, timeout: timeout)
   end
@@ -32,7 +32,7 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
       region = $2
       key = $3
       s3_uri = "s3://#{bucket}/#{key}"
-      
+
       aws_path = "#{ENV['HOMEBREW_PREFIX']}/bin/aws"
 
       # Generate presigned URL valid for 15 minutes (900 seconds) to allow for multiple uses
@@ -47,7 +47,7 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
         io.close
         exit_code = $?.exitstatus
       end
-      
+
       presigned_url = result
 
       if exit_code == 0
@@ -78,9 +78,9 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
         sso_registration_scopes = sso:account:access
 
         [profile geekbot-cli]
-        sso_account_id = #{ENV.fetch("AWS_ACCOUNT_ID", "558529356944")}
+        sso_account_id = #{ENV.fetch("AWS_ACCOUNT_ID", "197848513456")}
         sso_session = witco
-        sso_role_name = #{ENV.fetch("AWS_ROLE", "infra-developer")}
+        sso_role_name = #{ENV.fetch("AWS_ROLE", "global-access-all-bootstrap")}
         region = us-east-1
         duration_seconds = 43200
         output = json
