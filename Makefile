@@ -17,6 +17,7 @@ test-formula: clean ## Test formula
 	@echo "Installing formula..."
 	@brew install --verbose local/witco/geekbot-cli
 	@echo "✅ Installation complete"
+	@$(MAKE) clean
 
 clean: ## Remove local installations
 	@echo "Uninstalling geekbot-cli from all taps..."
