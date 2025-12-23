@@ -15,12 +15,10 @@ class GeekbotCli < Formula
 
   def install
     bin.install "geekbot" => "geekbot-cli"
-  end
 
-  def uninstall_preflight
-    # Clean up AWS config directory created by our custom download strategy
-    config_dir = "#{Dir.home}/.homebrew-geekbot"
-    FileUtils.rm_rf(config_dir) if Dir.exist?(config_dir)
+    # Clean up AWS config created by download strategy
+    config_dir = Pathname.new(Dir.home) / ".homebrew-geekbot"
+    config_dir.rmtree if config_dir.exist?
   end
 
   test do
