@@ -23,11 +23,7 @@ Command-line interface for Geekbot automation and management.
 
 #### Authentication
 
-The CLI uses AWS SSO for authentication. On first use, you'll be prompted to configure your AWS credentials:
-
-```bash
-aws sso login --profile geekbot-cli
-```
+The formula automatically handles AWS SSO authentication during installation and upgrades. You'll be prompted to authenticate via your browser if needed.
 
 #### Environment Variables
 
