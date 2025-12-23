@@ -5,9 +5,15 @@ class GeekbotCli < Formula
   homepage "https://github.com/cincpro/geekbot-cli"
   version "0.1.0"
 
-  # Dummy URL that works - we ignore this download in install method
-  url "https://mgt-wc-geekbot-cli-releases.s3.us-east-1.amazonaws.com/v0.1.0/geekbot-v0.1.0-aarch64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
-  sha256 "4424e77dd9a033c0776d5e185e493772efbcef1408bf3f3789e911c993ac05e7"
+  on_arm do
+    url "https://mgt-wc-geekbot-cli-releases.s3.us-east-1.amazonaws.com/v0.1.0/geekbot-v0.1.0-aarch64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
+    sha256 "4424e77dd9a033c0776d5e185e493772efbcef1408bf3f3789e911c993ac05e7"
+  end
+
+  on_intel do
+    url "https://mgt-wc-geekbot-cli-releases.s3.us-east-1.amazonaws.com/v0.1.0/geekbot-v0.1.0-x86_64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
+    sha256 "fb20abbe8da2a730084d94b7c836401c2385797bf7a26115c6b203ce72b39395"
+  end
 
   # Prerequisites only for now
   depends_on "awscli"
