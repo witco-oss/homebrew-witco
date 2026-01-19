@@ -6,20 +6,20 @@ A Homebrew tap for Witco CLI tools.
 
 ## Installation
 
-### Geekbot CLI
+### witco-cli
 
-Install the Geekbot CLI tool:
+Install the Witco CLI tool:
 
 ```bash
 brew tap witco/witco https://tavern.witco.net/witco/homebrew-witco.git
-brew install geekbot-cli
+brew install witco-cli
 ```
 
 ## Tools
 
-### geekbot-cli
+### Witco CLI
 
-Command-line interface for Geekbot automation and management.
+Command-line interface for Witco operations. Installs the `witctl` binary.
 
 #### Authentication
 
@@ -35,12 +35,13 @@ You can customize the AWS configuration by setting these environment variables b
 Example:
 
 ```bash
-AWS_ACCOUNT_ID=123456789012 AWS_ROLE=my-role brew install geekbot-cli
+AWS_ACCOUNT_ID=123456789012 AWS_ROLE=my-role brew install witco-cli
 ```
 
 ## Documentation
 
 For more information:
+
 - Use `brew help` or `man brew`
 - Visit [Homebrew's documentation](https://docs.brew.sh)
-- For Geekbot CLI usage: `geekbot-cli --help`
+- For witctl usage: `witctl --help`

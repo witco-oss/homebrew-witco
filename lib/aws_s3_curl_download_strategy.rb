@@ -24,8 +24,8 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
 
   def generate_presigned_url
     # Convert HTTPS S3 URL to S3 URI for aws s3 presign command
-    # From: https://mgt-wc-geekbot-cli-releases.s3.us-east-1.amazonaws.com/v0.1.0/geekbot-v0.1.0-aarch64-apple-darwin.tar.gz
-    # To: s3://mgt-wc-geekbot-cli-releases/v0.1.0/geekbot-v0.1.0-aarch64-apple-darwin.tar.gz
+    # From: https://mgt-wc-witco-cli-releases.s3.us-east-1.amazonaws.com/v0.1.0/witctl-v0.1.0-aarch64-apple-darwin.tar.gz
+    # To: s3://mgt-wc-witco-cli-releases/v0.1.0/witctl-v0.1.0-aarch64-apple-darwin.tar.gz
 
     if @url =~ %r{^https://([^.]+)\.s3\.([^.]+)\.amazonaws\.com/(.+)$}
       bucket = $1
@@ -40,7 +40,7 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
       exit_code = nil
       IO.popen(
         {"AWS_CONFIG_FILE" => aws_config_file},
-        [aws_path, "s3", "presign", s3_uri, "--expires-in", "900", "--profile", "geekbot-cli"],
+        [aws_path, "s3", "presign", s3_uri, "--expires-in", "900", "--profile", "witco-cli"],
         err: [:child, :out]
       ) do |io|
         result = io.read.strip
@@ -61,12 +61,12 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
   end
 
   def aws_config_file
-    "#{Dir.home}/.homebrew-geekbot/aws-config"
+    "#{Dir.home}/.homebrew-witco-cli/aws-config"
   end
 
   def setup_aws_config
     # Use formula-specific location to avoid interfering with user's config
-    config_dir = "#{Dir.home}/.homebrew-geekbot"
+    config_dir = "#{Dir.home}/.homebrew-witco-cli"
 
     unless File.exist?(aws_config_file)
       FileUtils.mkdir_p(config_dir)
@@ -77,7 +77,7 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
         sso_region = us-east-2
         sso_registration_scopes = sso:account:access
 
-        [profile geekbot-cli]
+        [profile witco-cli]
         sso_account_id = #{ENV.fetch("AWS_ACCOUNT_ID", "197848513456")}
         sso_session = witco
         sso_role_name = #{ENV.fetch("AWS_ROLE", "all-bootstrap")}
@@ -97,7 +97,7 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
     exit_code = nil
     IO.popen(
       {"AWS_CONFIG_FILE" => aws_config_file},
-      [aws_path, "sts", "get-caller-identity", "--profile", "geekbot-cli"],
+      [aws_path, "sts", "get-caller-identity", "--profile", "witco-cli"],
       err: [:child, :out]
     ) do |io|
       result = io.read.strip
@@ -110,12 +110,12 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
     end
 
     # Trigger SSO login with explicit config file
-    unless system({"AWS_CONFIG_FILE" => aws_config_file}, aws_path, "sso", "login", "--profile", "geekbot-cli")
+    unless system({"AWS_CONFIG_FILE" => aws_config_file}, aws_path, "sso", "login", "--profile", "witco-cli")
       raise "AWS SSO login failed"
     end
 
     # Verify authentication worked
-    unless system({"AWS_CONFIG_FILE" => aws_config_file}, aws_path, "sts", "get-caller-identity", "--profile", "geekbot-cli", out: File::NULL, err: File::NULL)
+    unless system({"AWS_CONFIG_FILE" => aws_config_file}, aws_path, "sts", "get-caller-identity", "--profile", "witco-cli", out: File::NULL, err: File::NULL)
       raise "AWS SSO authentication verification failed"
     end
   end
