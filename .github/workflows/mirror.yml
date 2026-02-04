@@ -15,9 +15,11 @@ jobs:
           fetch-depth: 0
 
       - name: Mirror to witco-oss
-        uses: yesolutions/mirror-action@master
-        with:
-          REMOTE: git@github.com:witco-oss/homebrew-witco.git
-          GIT_SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY_WITCO_OSS_HOMEBREW_WITCO }}
-          GIT_SSH_NO_VERIFY_HOST: "true"  # known_hosts broken in action, see yesolutions/mirror-action#14
-          PUSH_ALL_REFS: "false"
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_KEY_WITCO_OSS_HOMEBREW_WITCO }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          git remote add mirror git@github.com:witco-oss/homebrew-witco.git
+          git push mirror main --force --tags
+        env:
+          GIT_SSH_COMMAND: ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no
