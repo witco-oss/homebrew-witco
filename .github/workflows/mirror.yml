@@ -14,14 +14,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Mirror to Tavern
-        uses: yesolutions/mirror-action@master
-        with:
-          REMOTE: https://tavern.witco.net/witco/homebrew-witco.git
-          GIT_USERNAME: cincpro-github-actions
-          GIT_PASSWORD: ${{ secrets.TAVERN_ACCESS_TOKEN }}
-          PUSH_ALL_REFS: "false"
-
       - name: Mirror to witco-oss
         uses: yesolutions/mirror-action@master
         with:
