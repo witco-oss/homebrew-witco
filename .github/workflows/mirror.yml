@@ -19,5 +19,5 @@ jobs:
         with:
           REMOTE: git@github.com:witco-oss/homebrew-witco.git
           GIT_SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY_WITCO_OSS_HOMEBREW_WITCO }}
-          GIT_SSH_NO_VERIFY_HOST: "true"
+          GIT_SSH_KNOWN_HOSTS: ${{ vars.GIT_SSH_KNOWN_HOSTS }}
           PUSH_ALL_REFS: "false"
