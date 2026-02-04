@@ -18,15 +18,13 @@ brew install witco-cli
 
 ### Migrating from tavern.witco.net
 
-If you previously tapped from `tavern.witco.net`, update your tap to use the new
-GitHub URL:
+If you previously tapped from `tavern.witco.net`, update your tap remote to use
+the new GitHub URL:
 
 ```bash
-brew untap witco/witco
-brew tap witco/witco https://github.com/witco-oss/homebrew-witco.git
+git -C $(brew --repo witco/witco) remote set-url origin https://github.com/witco-oss/homebrew-witco.git
+brew update
 ```
-
-Installed formulas remain installed during this process.
 
 ## Tools
 
