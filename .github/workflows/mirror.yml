@@ -7,6 +7,7 @@ on:
 
 jobs:
   mirror:
+    if: github.repository != 'witco-oss/homebrew-witco'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
