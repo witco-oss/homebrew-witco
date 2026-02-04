@@ -1,4 +1,4 @@
-name: Mirror to Tavern
+name: Mirror
 
 on:
   push:
@@ -20,4 +20,12 @@ jobs:
           REMOTE: https://tavern.witco.net/witco/homebrew-witco.git
           GIT_USERNAME: cincpro-github-actions
           GIT_PASSWORD: ${{ secrets.TAVERN_ACCESS_TOKEN }}
+          PUSH_ALL_REFS: "false"
+
+      - name: Mirror to witco-oss
+        uses: yesolutions/mirror-action@master
+        with:
+          REMOTE: git@github.com:witco-oss/homebrew-witco.git
+          GIT_SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY_WITCO_OSS_HOMEBREW_WITCO }}
+          GIT_SSH_KNOWN_HOSTS: ${{ vars.GIT_SSH_KNOWN_HOSTS }}
           PUSH_ALL_REFS: "false"
