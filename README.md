@@ -2,7 +2,7 @@
 
 A Homebrew tap for Witco CLI tools.
 
-> **Note:** This private repository is mirrored for public access at https://tavern.witco.net/witco/homebrew-witco
+> **Note:** This private repository is mirrored for public access at https://github.com/witco-oss/homebrew-witco
 
 ## Installation
 
@@ -11,7 +11,7 @@ A Homebrew tap for Witco CLI tools.
 Install the Witco CLI tool:
 
 ```bash
-brew tap witco/witco https://tavern.witco.net/witco/homebrew-witco.git
+brew tap witco/witco https://github.com/witco-oss/homebrew-witco.git
 brew install witco-cli
 ```
 
