@@ -22,14 +22,6 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
     super(url: presigned_url, resolved_url: presigned_url, timeout: timeout)
   end
 
-  def aws_path
-    @aws_path ||= [
-      "#{ENV['HOMEBREW_PREFIX']}/bin/aws",
-      "/usr/local/bin/aws",
-    ].find { |p| File.executable?(p) } ||
-      raise("AWS CLI not found. Install it with: brew install awscli")
-  end
-
   def generate_presigned_url
     # Convert HTTPS S3 URL to S3 URI for aws s3 presign command
     # From: https://mgt-wc-witco-cli-releases.s3.us-east-1.amazonaws.com/v0.1.0/witctl-v0.1.0-aarch64-apple-darwin.tar.gz
@@ -40,6 +32,8 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
       region = $2
       key = $3
       s3_uri = "s3://#{bucket}/#{key}"
+
+      aws_path = "#{ENV['HOMEBREW_PREFIX']}/bin/aws"
 
       # Generate presigned URL valid for 15 minutes (900 seconds) to allow for multiple uses
       result = ""
@@ -97,6 +91,8 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
   end
 
   def test_aws_sso
+    # Test authentication by calling AWS CLI with explicit config
+    aws_path = "#{ENV['HOMEBREW_PREFIX']}/bin/aws"
     result = ""
     exit_code = nil
     IO.popen(
