@@ -23,10 +23,7 @@ class AwsS3CurlDownloadStrategy < CurlDownloadStrategy
   end
 
   def aws_path
-    @aws_path ||= [
-      "#{ENV.fetch("HOMEBREW_PREFIX", "/opt/homebrew")}/bin/aws",
-      "/usr/local/bin/aws",
-    ].find { |p| File.executable?(p) } ||
+    @aws_path ||= `which aws`.chomp.then { |p| p.empty? ? nil : p } ||
       raise("AWS CLI not found. Install it with: brew install awscli")
   end
 
