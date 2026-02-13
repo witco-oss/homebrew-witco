@@ -6,6 +6,7 @@ help: ## Show this help
 test-formula: clean ## Test formula
 	@echo "Testing formula syntax..."
 	@ruby -c Formula/witco-cli.rb
+	@ruby -c Formula/galactus.rb
 	@echo "✅ Syntax valid"
 	@echo "Adding local tap..."
 	@-brew untap local/witco 2>/dev/null || true

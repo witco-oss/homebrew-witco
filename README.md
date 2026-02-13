@@ -7,13 +7,20 @@ A Homebrew tap for Witco CLI tools.
 
 ## Installation
 
-### witco-cli
-
-Install the Witco CLI tool:
-
 ```bash
 brew tap witco/witco https://github.com/witco-oss/homebrew-witco.git
+```
+
+### witco-cli
+
+```bash
 brew install witco-cli
+```
+
+### galactus
+
+```bash
+brew install galactus
 ```
 
 ### Migrating from tavern.witco.net
@@ -27,6 +34,10 @@ brew update
 ```
 
 ## Tools
+
+### Galactus
+
+Kubernetes deployment orchestrator. Installs the `galactus` binary.
 
 ### Witco CLI
 
@@ -58,3 +69,4 @@ For more information:
 - Use `brew help` or `man brew`
 - Visit [Homebrew's documentation](https://docs.brew.sh)
 - For witctl usage: `witctl --help`
+- For galactus usage: `galactus --help`
