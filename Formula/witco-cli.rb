@@ -3,16 +3,16 @@ require_relative "../lib/aws_s3_curl_download_strategy"
 class WitcoCli < Formula
   desc "CLI tool for Witco operations"
   homepage "https://github.com/cincpro/witco-cli"
-  version "0.14.1"
+  version "0.16.0"
 
   on_arm do
-    url "https://mgt-wc-geekbot-cli-releases.s3.us-east-1.amazonaws.com/v0.14.1/witctl-v0.14.1-aarch64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
-    sha256 "42e4405066e1316463c0f1d8dc00db87e3460caa746c43c02c77a620fd949436"
+    url "https://mgt-wc-geekbot-cli-releases.s3.us-east-1.amazonaws.com/v0.16.0/witctl-v0.16.0-aarch64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
+    sha256 "903d6141f274f70448bb247fb861cd38ad1124d31fef335986088878eacda3f5"
   end
 
   on_intel do
-    url "https://mgt-wc-geekbot-cli-releases.s3.us-east-1.amazonaws.com/v0.14.1/witctl-v0.14.1-x86_64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
-    sha256 "063dd04df78b6490f9beb7958c4d83e81d1ce334b48fec0128ab28932bdc854b"
+    url "https://mgt-wc-geekbot-cli-releases.s3.us-east-1.amazonaws.com/v0.16.0/witctl-v0.16.0-x86_64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
+    sha256 "45dd70dc870f9ab1946042c9d83afe620b10d5ea91b152537854e96df989b3c6"
   end
 
   depends_on "awscli"
