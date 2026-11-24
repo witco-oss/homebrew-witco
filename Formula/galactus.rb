@@ -3,16 +3,16 @@ require_relative "../lib/aws_s3_curl_download_strategy"
 class Galactus < Formula
   desc "Kubernetes deployment orchestrator"
   homepage "https://github.com/cincpro/galactus"
-  version "0.24.2"
+  version "0.24.3"
 
   on_arm do
-    url "https://mgt-wc-galactus-releases.s3.us-east-1.amazonaws.com/galactus-v0.24.2/galactus-aarch64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
-    sha256 "0172df04702d9fc3629a2d345add1e2857a3f00375da3c22c762bad64da40ccd"
+    url "https://mgt-wc-galactus-releases.s3.us-east-1.amazonaws.com/galactus-v0.24.3/galactus-aarch64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
+    sha256 "dd4818cc53a940ef6b98b9a2b72d80b651f7e6c224980d8db6874afb763e9cf7"
   end
 
   on_intel do
-    url "https://mgt-wc-galactus-releases.s3.us-east-1.amazonaws.com/galactus-v0.24.2/galactus-x86_64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
-    sha256 "9b843428cb4f0cd8086e0148e3e4e5a2de6b6f9a7da11bcb795fd907ed802b29"
+    url "https://mgt-wc-galactus-releases.s3.us-east-1.amazonaws.com/galactus-v0.24.3/galactus-x86_64-apple-darwin.tar.gz", using: AwsS3CurlDownloadStrategy
+    sha256 "0850090cd57a6b946430d5e8a519700dce6ebfd4f6bfc3531464a2023bd95ea3"
   end
 
   depends_on "awscli"
